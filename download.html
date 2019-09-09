@@ -1,218 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>快来看看</title>
     <script src="./static/jquery-1.12.4.js?v="></script>
     <script src="./static/qrcode.min.js"></script>
 
 </head>
+
 <body>
- <style>
-    body {
-      background-color: #fff;
-    }
-    ::-webkit-scrollbar{  
-        width: 0px;  
-        height: 0px;  
-    }  
-    body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
-    body,input,textarea,select,button,table{border-collapse:collapse;border-spacing:0;}
-    body{font:normal 1em/1.25em 'microsoft Yahei';color:#000;-webkit-text-size-adjust:none}
-    h1,h2,h3,h4,h5,h6{font-size:100%;}
-    img,fieldset{border:0 none;}
-    ul,ol,li{list-style:none;}
-    em,address{font-style:normal;}
-    table{border-collapse:collapse;}
-    em,i{font-style:normal;}
-    strong,b{font-weight:normal;}
-    img{border:none;}
-    input,img{vertical-align:middle;}
-    input{outline:none;}
-    *{-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
-    textarea:focus{outline:0;}
-    a{text-decoration:none;}
-    .clearfix:after{display:block;clear:both;visibility:hidden;height:0;content:" ";font-size:0;}
-    .clearfix{*zoom:1;}
-    #app{
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
-    .code{
-        position: absolute;
-        background:#fff;
-        padding:5px;
-        width: 100px;
-        height: 100px;
-        background-size: 100%;
-        left: 35%;
-        top: 45%;
+    <style>
+        body {
+            background-color: #fff;
+        }
 
-    }
-    .btn{
-        position: absolute;
-        background: url(	./static/2.png) no-repeat center;
-        width: 180px;
-        height: 56px;
-        background-size: 100%;
-        top:75%;
-        left: 25%;
-        
-    }  
-    .btns{
-        position: absolute;
-        background: url(	./static/3.png) no-repeat center;
-        width: 180px;
-        height: 56px;
-        background-size: 100%;
-        top:65%;
-        left: 25%;
-    }
+        ::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
 
-    .qr-img{
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        blockquote,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        pre,
+        form,
+        fieldset,
+        legend,
+        button,
+        input,
+        textarea,
+        th,
+        td {
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        input,
+        textarea,
+        select,
+        button,
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        body {
+            font: normal 1em/1.25em 'microsoft Yahei';
+            color: #000;
+            -webkit-text-size-adjust: none
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 100%;
+        }
+
+        img,
+        fieldset {
+            border: 0 none;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+        }
+
+        em,
+        address {
+            font-style: normal;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        em,
+        i {
+            font-style: normal;
+        }
+
+        strong,
+        b {
+            font-weight: normal;
+        }
+
+        img {
+            border: none;
+        }
+
+        input,
+        img {
+            vertical-align: middle;
+        }
+
+        input {
+            outline: none;
+        }
+
+        * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        textarea:focus {
+            outline: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .clearfix:after {
+            display: block;
+            clear: both;
+            visibility: hidden;
+            height: 0;
+            content: " ";
+            font-size: 0;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        #app {
+            width: 100%;
+            height: 100%;
             position: relative;
-        z-index: 9;
-        width: 30px;
-        height: 30px;
-        top: -70px;
-        left: 33px;
-        padding: 3px;
-        background: #fff;
-        border: 1px solid #fff;
-        border-radius: 10px;
-    }
+        }
 
-    .alertDown{
-        background: #000;
-        padding-top: 30px; 
-        padding-left: 35px;
-        padding-bottom: 30px;
-        padding-right: 35px;
-        color: #888;
-        font-size: 14px;
-        position: relative;
-        display: none;
-    }
-    .jiantous{
-        position: absolute;
-        display: inline-block;
-        width: 30px;
-        height: 37px;
-        right: 8px;
-        top:15px;
-        background: url(./static/alert-arrow.png) no-repeat center;
-        background-size: 100%;
-    }
-  </style>
-   <div class="alertDown">
-                     点击右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装
-                    <span class="jiantous"></span>
-                </div>
-            <div id="app">
-               <img src="./static/1.png" width="100%" height="auto" />
+        .code {
+            position: absolute;
+            background: #fff;
+            padding: 5px;
+            width: 100px;
+            height: 100px;
+            background-size: 100%;
+            left: 35%;
+            top: 45%;
 
-               <div class="code">
-                   <div id="qrcode"></div>
-                   <img src="./static/180.png" width="100%" class="qr-img" />
-                  
-               </div>
-                      <p style="width: 100%;
+        }
+
+        .btn {
+            position: absolute;
+            background: url(./static/2.png) no-repeat center;
+            width: 180px;
+            height: 56px;
+            background-size: 100%;
+            top: 75%;
+            left: 25%;
+
+        }
+
+        .btns {
+            position: absolute;
+            background: url(./static/3.png) no-repeat center;
+            width: 180px;
+            height: 56px;
+            background-size: 100%;
+            top: 65%;
+            left: 25%;
+        }
+
+        .qr-img {
+            position: relative;
+            z-index: 9;
+            width: 30px;
+            height: 30px;
+            top: -70px;
+            left: 33px;
+            padding: 3px;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 10px;
+        }
+
+        .alertDown {
+            background: #000;
+            padding-top: 30px;
+            padding-left: 35px;
+            padding-bottom: 30px;
+            padding-right: 35px;
+            color: #888;
+            font-size: 14px;
+            position: relative;
+            display: none;
+        }
+
+        .jiantous {
+            position: absolute;
+            display: inline-block;
+            width: 30px;
+            height: 37px;
+            right: 8px;
+            top: 15px;
+            background: url(./static/alert-arrow.png) no-repeat center;
+            background-size: 100%;
+        }
+    </style>
+    <div class="alertDown">
+        点击右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装
+        <span class="jiantous"></span>
+    </div>
+    <div id="app">
+        <img src="./static/1.png" width="100%" height="auto" />
+
+        <div class="code">
+            <div id="qrcode"></div>
+            <img src="./static/180.png" width="100%" class="qr-img" />
+
+        </div>
+        <p style="width: 100%;
       text-align: center;
       font-size: 1.2rem;
       color: #fdc647;
       position: absolute;
-      top:40%;">请下载APP下款</p> 
+      top:40%;">请下载APP下款</p>
 
-      
 
-              <div class="btn"></div>
 
-               <a id="android">
-               <div class="btns"> </div>
-               </a>
-                            
+        <div class="btn"></div>
 
-                
-            </div>
+        <a id="android">
+            <div class="btns"> </div>
+        </a>
+
+
+
+    </div>
 
 
     <script>
-    function isWeiXin() {
+        function isWeiXin() {
             var ua = window.navigator.userAgent.toLowerCase();
             // console.log(ua);
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            return true;
+                return true;
             } else {
-            return false;
+                return false;
             }
         }
- 
-$(function(){
-        var width=document.documentElement.clientWidth;
 
-        // $(".btnss").css("left",(width)/3.7+"px");
-        // $(".btnss").click(function(){
-        //   if(isWeiXin()){
-        //                 alert("请打开浏览器下载");
+        $(function () {
+            var width = document.documentElement.clientWidth;
 
-        //             }else{
-        //               location.href="/h5/index"
-        //                  }
-        // });
-       $(".btn").css("left",(width)/3.7+"px");
-       $(".btn").click(function(){
-          if(isWeiXin()){
-                        alert("请打开浏览器下载");
+            // $(".btnss").css("left",(width)/3.7+"px");
+            // $(".btnss").click(function(){
+            //   if(isWeiXin()){
+            //                 alert("请打开浏览器下载");
 
-                    }else{
-                      location.href="itms-services://?action=download-manifest&url=https://ddddasdfghj543wedsfgbn.github.io/cvbedsvfv/static/manifest.plist"
-                         }
+            //             }else{
+            //               location.href="/h5/index"
+            //                  }
+            // });
+            $(".btn").css("left", (width) / 3.7 + "px");
+            $(".btn").click(function () {
+                if (isWeiXin()) {
+                    alert("请打开浏览器下载");
+
+                } else {
+                    location.href = "itms-services://?action=download-manifest&url=https://ddddasdfghj543wedsfgbn.github.io/cvbedsvfv/static/manifest.plist"
+                }
+            });
+            $(".btns").css("left", (width) / 3.7 + "px");
+
+
+            $(".btns").click(function () {
+
+
+                if (isWeiXin()) {
+                    alert("请打开浏览器下载");
+
+                } else {
+                    location.href = "https://github.com/ddddasdfghj543wedsfgbn/cvbedsvfv/releases/download/1.0.0/app.apk"
+                }
+
+            });
+
+        })
+        var url = "https://jq.qq.com/";
+        var qrcode = new QRCode('qrcode', {
+            text: url,
+            width: 100,
+            height: 100,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
         });
-            $(".btns").css("left",(width)/3.7+"px");
+        $(document).ready(function () {
+            var uN = navigator.userAgent;
 
+            var isAndroid = uN.indexOf('Android') > -1 || uN.indexOf('Linux') > -1; //android
 
-       $(".btns").click(function(){
+            if (isAndroid) {
+                $('.btnss').hide();
+            } else {
+            }
 
+            if (isWeiXin()) {
+                $('.alertDown').show();
 
-                     if(isWeiXin()){
-                        alert("请打开浏览器下载");
-
-                    }else{
-                      location.href="./static/app.apk"
-                         }
-       
+            } else {
+                $('.alertDown').hide();
+            }
         });
-
-    })
-     var url = "https://jq.qq.com/";
-      var qrcode = new QRCode('qrcode', { 
-          text: url, 
-          width: 100, 
-          height: 100, 
-          colorDark : '#000000', 
-          colorLight : '#ffffff', 
-        });       
-          $(document).ready(function(){
-                  var uN = navigator.userAgent;
-
-              var isAndroid = uN.indexOf('Android') > -1 || uN.indexOf('Linux') > -1; //android
-
-      if (isAndroid){
-          $('.btnss').hide();
-      }else {
-      }
-
-        if(isWeiXin()){
-             $('.alertDown').show();
-
-        }else{
-             $('.alertDown').hide();
-             }
-        });
- </script>
+    </script>
 </body>
 
 </html>
-
